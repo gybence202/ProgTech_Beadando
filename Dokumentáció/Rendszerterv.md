@@ -10,9 +10,9 @@ Az alkalmazás célja egy egyszerűen kezelhető, felhasználóbarát felület b
   - Megrendelő: Konyhai Segéd Bt.
 
 ### 2.2 Projektmunkások és felelőségek
-- Frontend és backend: Bodnár Máté, Herbák Marcell  
-- Tesztelés: Bodnár Máté, Herbák Marcell
-
+- Frontend és backend: Győrfi Bence, Sálek Dániel  
+- Tesztelés: Győrfi Bence, Sálek Dániel
+  
 ### 2.3 Ütemterv
 
 | Funkció         | Feladat                        | Prioritás | Becslés (nap) | Aktuális becslés | Eltelt idő | Becsült idő |
