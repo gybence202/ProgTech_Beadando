@@ -94,36 +94,24 @@ Kliens gépek: A követelményeknek megfelelő, Windows 10 vagy 11 operációs r
 Szerver (Host) gép: Az adatbázis rendszer és a háttérfolyamatokat ellátó szolgáltatáshoz szükséges összetevők itt találhatóak. A kliens gép ezzel kommunikál.
 ### Fejlesztő eszközök
  - IntelliJ IDEA
- - Visual Studio Code
- - XAMPP (MySQL)
 
-
-## 8. Architekturális terv
+## 7. Architekturális terv
 
 ### Webszerver
 
--XAMPP.
-
 ### Adatbázis rendszer
-
-- MySQL alapú adatbázis rendszer.
 
 ### A program elérése, kezelése
 
-- Szükséges Swing, XAMPP, ami az installáció esetén egy szervergép.
+## 8. Adatbázis terv
 
-
-## 9. Adatbázis terv
-
-![dbterv](https://github.com/herbakmarcell/gambasim_progtech/assets/128597041/139356a1-df93-4e2a-9172-66dbd2bd8f31)
-
-## 10. Implementációs terv
+## 9. Implementációs terv
 A projektet két részre oszlik: a frontendre és a backendre. A frontend Java Swing segítségével készül, míg a backend Java keretrendszerben.
 A program kódjában használt nyelv elsősorban az angol.
 A szerver és az adatbázist összekötő csomag  felelős az adatbázis kezeléséért.
 Mind a frontend, mind a backend fejlesztéséhez szükség van a IntelliJ környezet telepítésére és konfigurálására a szükséges eszközökkel és kiegészítőkkel
 együtt.
-## 11. Tesztterv
+## 10. Tesztterv
 
 A tesztelések célja a rendszer és komponensei funkcionalitásának teljes vizsgálata,
 ellenőrzése a rendszer által megvalósított üzleti szolgáltatások verifikálása.
@@ -138,16 +126,10 @@ A tesztelés során a szoftver megfelelő működését vizsgáljuk. Amennyiben 
 
  | Teszteset      | Elvárt eredmény                                                                                            | 
  |----------------|------------------------------------------------------------------------------------------------------------| 
- | Regisztráció   | A felhasználó az adatok megadásával sikeresen regisztrálni tud.                                            |
- | Bejelentkezés  | A felhasználó az adatok megadásával sikeresen be tud jelentkezni.                                          |
- | Tét megtétele  | Ha a felhasználó megfelelő mennyiségű egyenleggel rendelkezik, meg tudja tenni tétjét a megfelelő játékra. |
- | Játék indítása | A játék elindul, és az eredmény és felhasználó tippje alapján közli az eredményt.                          |
 
-## 12. Telepítési terv
+## 11. Telepítési terv
 
 **Fizikai telepítési terv**:
- - A felhasználónak szüksége van egy működő számítógépre, amely rendelkezik internet hozzáféréssel.
- - A szoftverünk működéséhez szükség van egy szerverre. A szervernek kapcsolódni kell egy hálózathoz, hogy elérhető legyen.
 
 **Szoftver telepítési terv**:
  - A felhasználónak szüksége van egy Windows 10 vagy 11 operációs rendszerre, amely támogatja a Java alkalmazásokat.
@@ -160,7 +142,7 @@ A tesztelés során a szoftver megfelelő működését vizsgáljuk. Amennyiben 
  - A fejlesztők számára az alkalmazás szabadon konfigurálható, fejleszthető.
  - Abban az esetben, ha a szükséges beállítások megtörténtek, a felhasználók számára az alkalmazás futtatható
 
-## 13. Karbantartási terv
+## 12. Karbantartási terv
 Fontos ellenőrizni:
 *	Az alkalmazás megfelelően kezeli a kritikus információkat, azok nem elérhetők a megfelelő jogkör és felhasználói adatok nélkül. Ilyenek például a bejelentkezési adatok, és a felhasználók személyes adatai adatai.
 
