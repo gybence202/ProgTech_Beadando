@@ -1,93 +1,87 @@
-# Rendszerterv
+# Rendszerterv – Receptkezelő alkalmazás (JavaFX)
+
 ## 1. A rendszer célja
-Az alkalmazás célja egy változatos és szórakoztató szerencsejáték szimuláció biztosítása, amelyben a felhasználók különböző játékokat próbálhatnak ki. A fő cél az, hogy az alkalmazás vonzó alternatívát nyújtson a szerencsejáték függőséggel küzdők számára, segítve őket abban, hogy inkább biztonságos környezetben játszanak. A rendszer céljai közé tartozik továbbá a játékosok nyereség/veszteség arányának nyomon követése, az elemzések és statisztikák biztosítása a játékokról, valamint a felhasználói élmény folyamatos javítása és a felhasználói visszajelzések gyűjtése a fejlesztési folyamat során.
+Az alkalmazás célja egy egyszerűen kezelhető, felhasználóbarát felület biztosítása, amely segítséget nyújt a felhasználók számára receptek rögzítéséhez, rendszerezéséhez, szerkesztéséhez és kereséséhez. A rendszer lehetőséget ad a recept hozzávalóinak, leírásának, elkészítési idejének és kategóriájának rögzítésére. Az alkalmazás célja a főzési élmény megkönnyítése, egyéni gyűjtemények létrehozása és a receptek gyors elérése.
+
 ## 2. Projektterv
 
-### 2.1 Projektszerepkörök, felelőségek:
-  * Üzleti szereplő:
-	  -   Megrendelő:
-		  -  ***
-     
-### 2.2 Projektmunkások és felelőségek:
-   * Frontend és backend:
-     
-   * Tesztelés:
-     
-     
-### 2.3 Ütemterv:
+### 2.1 Projektszerepkörök, felelőségek
+- **Üzleti szereplő**
+  - Megrendelő: Konyhai Segéd Bt.
 
-|Funkció                  | Feladat                                | Prioritás | Becslés (nap) | Aktuális becslés (nap) | Eltelt idő (nap) | Becsült idő (nap) |
-|-------------------------|----------------------------------------|-----------|---------------|------------------------|------------------|---------------------|
-|Rendszerterv             |Megírás                                 |         1 |             1 |                      1 |                1 |                   1 |
-|Program                  |Prototípus elkészítése                  |         2 |             3 |                      3 |                2 |                   1 |
-|Program                  |Tesztelés                               |         3 |             1 |                      1 |                1 |                   1 |
+### 2.2 Projektmunkások és felelőségek
+- Frontend és backend: Bodnár Máté, Herbák Marcell  
+- Tesztelés: Bodnár Máté, Herbák Marcell
 
-### 2.4 Mérföldkövek:
-   *   05.10. Projekt elkezdése
-   *   05.11. Alap prototípus elkészítése
-   *   05.12. Végleges prototípus elkészítése
-   *   05.12. Tesztelés
-   *   05.13. Bemutatás és átadás
+### 2.3 Ütemterv
+
+| Funkció         | Feladat                        | Prioritás | Becslés (nap) | Aktuális becslés | Eltelt idő | Becsült idő |
+|------------------|-------------------------------|-----------|----------------|-------------------|-------------|--------------|
+| Rendszerterv     | Megírás                       | 1         | 1              | 1                 | 1           | 1            |
+| UI-terv          | Menük és nézetek megalkotása  | 2         | 2              | 2                 | 2           | 2            |
+| Program          | Prototípus elkészítése        | 3         | 3              | 3                 | 2           | 1            |
+| Program          | Tesztelés                     | 4         | 1              | 1                 | 1           | 1            |
+
+### 2.4 Mérföldkövek
+- 05.10. Projekt kezdete  
+- 05.11. Alap prototípus  
+- 05.12. Funkciók befejezése  
+- 05.12. Tesztelés  
+- 05.13. Bemutatás és átadás
 
 ## 3. Üzleti folyamatok modellje
 
 ### 3.1 Üzleti szereplők
-Az alkalmazás regisztráció vagy bejelentkezés után válik elérhetővé, bárki tud regiszrálni. Minden felhasználó ugyanolyan jogkörrel rendelkezik.
+A receptkezelő alkalmazás szabadon használható regisztráció nélkül. A felhasználók helyi adatbázisban tárolhatják saját receptjeiket.
 
 ### 3.2 Üzleti folyamatok
-Az alkalmazás indulását követően a felhasználónak be kell jelentkeznie a funkciók eléréséhez.
-- Általános folyamatok:
-     - Regisztrálni az oldalra a megfelelő adatok magadásával.
-     - Bejelentkezni az oldalra a regisztráció során megadott megfelelő adatokkal.
-     - Bármikor kilépni az alkalmazásból.
-     - Játék kiválasztása.
-- Pénzfeldobó játék folyamatok:
-	- Tét megtétele.
-	- Tipp módosítása.
-	- Legutóbbi dobások megtekintése.
-	- Tipp elfogadása és részvétel a "sorsolásban".
-- Kockadobó játék folyamatok:
-  - Tét megtétele.
-  - Páros/Páratlan számok tippelése.
-  - Kisebb, egyenlő mint 3 vagy nagyobb mint 3 számok tippelése.
-  - Pontos szám tippelése.
-  - Tipp elfogadása és részvétel a "sorsolásban".
+- Recept hozzáadása: név, hozzávalók, leírás, idő, kategória
+- Recept módosítása
+- Recept törlése
+- Recept keresése név vagy hozzávaló alapján
+- Receptlista megjelenítése, szűrés kategória szerint
 
 ## 4. Követelmények
 
-### Funkcionális követelmények
+### 4.1 Funkcionális követelmények
 
-| ID | Megnevezés               | Leírás                                                                                                                                                                                   |
-|----|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| K1 | Bejelentkezési ablak     | A felhasználónak egyes funkciók elérése előtt azonosítania kell magát, mielőtt elérhetné azokat.                                                                                         |
-| K2 | Regisztráció             | A felhasználó itt tudja regisztrálni magát.                                                                                                                                              |
-| K3 | Játékmód választás       | A fehasználó kiválaszthatja, mely játékmódot szeretné játszani.                                                                                                                          |
-| K4 | Pénzfeldobó játék        | A pénzfeldobó játékban a felhasználó megteheti tétjét, hogy a szimulált pénzérme a feje vagy írása mutat felfelé, és az alapján kapja vissza megtett tétjét, amelyet tud módosítani is.  |
-| K5 | Kockadobó játék          | A kockadobó játékban a felhasználó megteheti tétjét, hogy a szimulált dobókocka különböző tulajdonságaira, és az alapján kapja vissza megtett tétjét, amelyet tud módosítani is.         |
- 
-### Nemfunkcionális követelmények
+| ID | Megnevezés               | Leírás                                                                                      |
+|----|--------------------------|---------------------------------------------------------------------------------------------|
+| K1 | Recept hozzáadása        | A felhasználó új receptet adhat hozzá a saját gyűjteményéhez.                              |
+| K2 | Recept szerkesztése      | A felhasználó módosíthatja a korábban elmentett recepteket.                                 |
+| K3 | Recept törlése           | A felhasználó törölheti a korábban elmentett recepteket.                                    |
+| K4 | Recept keresés           | A felhasználó név vagy hozzávaló alapján kereshet.                                          |
+| K5 | Receptlista megtekintése | A felhasználó kilistázhatja az összes receptet, szűrhet kategória szerint.                  |
 
-| ID | Megnevezés                             | Leírás                                                                                                              |
-|----|----------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| K6 | Átlátható, könnyen kezelhető felület   | A felületek könnyen használhatóak, átláthatóak legyenek, intuitívak, illetve ne legyenek zsúfoltak.                 |
-| K7 | Tervezési minták használata            | Az alkalmazás forráskódja tartalmazzon legalább 2 tervezési mintát. Mi esetünkben ez a Stratégia és a Command lesz. |
+### 4.2 Nemfunkcionális követelmények
 
-### Támogatott eszközök
+| ID | Megnevezés                          | Leírás                                                                                   |
+|----|-------------------------------------|------------------------------------------------------------------------------------------|
+| K6 | Átlátható, intuitív felület         | A kezelőfelület legyen letisztult és könnyen értelmezhető minden korosztály számára.     |
+| K7 | Adatkezelés biztonsága              | A receptadatokat lokálisan, szerializálással vagy adatbázissal biztonságosan tárolja.    |
+| K8 | Tervezési minták használata         | Az alkalmazás tartalmaz legalább két tervezési mintát (pl. MVC, Singleton).              |
 
- * Bármely Java alkalmazás futtatásra képes eszköz. Például otthoni számítógép, laptop, tablet. Preferáltabb Windows alapú rendszer.
+Támogatott eszközök:
+- JavaFX futtatására képes platformok: Windows, Linux, macOS (elsődlegesen Windows)
 
 ## 5. Funkcionális terv
 
 ### 5.1 Rendszerszereplők
- - Felhasználó
-   - Tétet tehet meg, és játszhat a játékmódokkal
- - "Gép"
-   - Sorsolja az eredményeket
+- Felhasználó:
+  - Receptek létrehozása, szerkesztése, törlése, keresése
+- Rendszer:
+  - Tárolás, visszakeresés, frissítés, rendezés
 
-### 5.2 Menühierarchiák
-- Főoldal (Bejelentkezés és Regisztráció)
-- Pénzfeldobó játék
-- Dobókocka játék
+### 5.2 Menühierarchia
+- Főmenü
+  - Recept hozzáadása
+  - Receptek listázása
+    - Recept szerkesztése
+    - Recept törlése
+    - Recept megtekintése
+  - Keresés
+  - Beállítások (pl. világos/sötét mód)
+
 
 ## 6. Fizikai környezet
 
