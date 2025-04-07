@@ -23,11 +23,11 @@ Az alkalmazás célja egy egyszerűen kezelhető, felhasználóbarát felület b
 | Program          | Tesztelés                     | 4         | 1              | 1                 | 1           | 1            |
 
 ### 2.4 Mérföldkövek
-- 05.10. Projekt kezdete  
-- 05.11. Alap prototípus  
-- 05.12. Funkciók befejezése  
-- 05.12. Tesztelés  
-- 05.13. Bemutatás és átadás
+- 04.07. Projekt kezdete  
+- 04.15. Alap prototípus  
+- 05.01. Funkciók befejezése  
+- 05.05. Tesztelés  
+- 05.15. Bemutatás és átadás
 
 ## 3. Üzleti folyamatok modellje
 
