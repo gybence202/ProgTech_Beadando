@@ -92,7 +92,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                micsurin.receptkonyv.receptkezeloapp/micsurin.receptkonyv.receptkezeloapp.HelloApplication
+                                micsurin.receptkonyv.receptkezeloapp/micsurin.receptkonyv.receptkezeloapp.ReceptApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

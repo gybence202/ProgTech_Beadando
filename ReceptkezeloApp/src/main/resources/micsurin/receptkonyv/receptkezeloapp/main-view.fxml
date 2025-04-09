@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="micsurin.receptkonyv.receptkezeloapp.ReceptController">
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <ListView fx:id="receptListView" prefHeight="200"/>
+            <TextField fx:id="nevField" promptText="Recept neve"/>
+            <TextArea fx:id="leirasArea" promptText="Recept leírása" prefRowCount="4"/>
+            <Button text="Hozzáadás" onAction="#hozzaadReceptet"/>
+        </VBox>
+    </center>
+</BorderPane>
