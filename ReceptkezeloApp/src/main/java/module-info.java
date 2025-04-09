@@ -8,5 +8,6 @@ module micsurin.receptkonyv.receptkezeloapp {
     requires org.kordamp.bootstrapfx.core;
 
     opens micsurin.receptkonyv.receptkezeloapp to javafx.fxml;
+    opens micsurin.receptkonyv.receptkezeloapp.model to javafx.base;
     exports micsurin.receptkonyv.receptkezeloapp;
 }
