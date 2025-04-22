@@ -31,6 +31,18 @@ public class ReceptController {
         receptLista.get(0).getAlapanyagok().add(new Alapanyag("Hús", "1 kg"));
         receptLista.get(0).getAlapanyagok().add(new Alapanyag("Hagyma", "3 db"));
 
+        receptLista.add(new Recept("Lecsó", "Finom magyar étel", new ArrayList<>()));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Mangalica zsír", "50 g"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Mangalica szalonna", "200 g"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Vöröshagyma", "2 fej"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Tv-paprika", "800 g"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Paradicsom", "600 g"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Füstölt pirospaprika", "4 ek"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Paradicsom", "600 g"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Só", "ízlés szerint"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Sűrített paradicsom", "50 g"));
+        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Parasztkolbász", "200 g"));
+
         receptListView.setItems(FXCollections.observableArrayList(
                 "Pörkölt", "Lecsó", "Túró Rudi"
         ));
