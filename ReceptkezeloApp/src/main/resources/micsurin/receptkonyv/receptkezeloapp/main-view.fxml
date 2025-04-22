@@ -4,16 +4,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="micsurin.receptkonyv.receptkezeloapp.ReceptController">
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.ReceptController">
+    <top>
+        <MenuBar>
+            <Menu text="Menü">
+                <MenuItem text="Keresés" onAction="#nyitKeresesPanel"/>
+            </Menu>
+        </MenuBar>
+    </top>
     <center>
         <VBox spacing="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <ListView fx:id="receptListView" prefHeight="200"/>
+            <TextField fx:id="keresesField" promptText="Keresés név alapján" onKeyReleased="#kereses"/>
+            <ComboBox fx:id="rendezesCombo" onAction="#rendez">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Név szerint növekvő"/>
+                        <String fx:value="Név szerint csökkenő"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <ListView fx:id="receptListView" prefHeight="200" onMouseClicked="#receptKivalasztas"/>
             <TextField fx:id="nevField" promptText="Recept neve"/>
             <TextArea fx:id="leirasArea" promptText="Recept leírása" prefRowCount="4"/>
             <Button text="Hozzáadás" onAction="#hozzaadReceptet"/>
+
+            <HBox spacing="5">
+                <TextField fx:id="alapanyagNevField" promptText="Alapanyag neve"/>
+                <TextField fx:id="mennyisegField" promptText="Mennyiség"/>
+                <Button text="Hozzáadás alapanyag" onAction="#hozzadAlapanyagot"/>
+            </HBox>
         </VBox>
     </center>
 </BorderPane>
