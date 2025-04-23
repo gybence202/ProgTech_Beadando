@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import micsurin.receptkonyv.receptkezeloapp.service.ReceptDAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,30 +24,21 @@ public class ReceptController {
     @FXML private TextField keresesField;
     @FXML private ComboBox<String> rendezesCombo;
 
+    private ReceptDAO receptDAO = new ReceptDAO();
     private List<Recept> receptLista = new ArrayList<>();
 
     @FXML
     private void initialize() {
-        // Alapanyagok és receptek listájának inicializálása
-        receptLista.add(new Recept("Pörkölt", "Finom magyar étel", new ArrayList<>()));
-        receptLista.get(0).getAlapanyagok().add(new Alapanyag("Hús", "1 kg"));
-        receptLista.get(0).getAlapanyagok().add(new Alapanyag("Hagyma", "3 db"));
-
-        receptLista.add(new Recept("Lecsó", "Finom magyar étel", new ArrayList<>()));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Mangalica zsír", "50 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Mangalica szalonna", "200 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Vöröshagyma", "2 fej"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Tv-paprika", "800 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Paradicsom", "600 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Füstölt pirospaprika", "4 ek"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Paradicsom", "600 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Só", "ízlés szerint"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Sűrített paradicsom", "50 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Parasztkolbász", "200 g"));
-
-        receptListView.setItems(FXCollections.observableArrayList(
-                "Pörkölt", "Lecsó", "Túró Rudi"
-        ));
+        try {
+            receptLista = receptDAO.getAllReceptek();
+            ObservableList<String> receptNevek = FXCollections.observableArrayList();
+            for (Recept recept : receptLista) {
+                receptNevek.add(recept.getNev());
+            }
+            receptListView.setItems(receptNevek);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -53,8 +46,14 @@ public class ReceptController {
         String nev = nevField.getText();
         String leiras = leirasArea.getText();
         if (!nev.isEmpty() && !leiras.isEmpty()) {
-            receptLista.add(new Recept(nev, leiras, new ArrayList<>()));
-            receptListView.getItems().add(nev);
+            Recept recept = new Recept(nev, leiras, new ArrayList<>());
+            try {
+                receptDAO.addRecept(recept);
+                receptLista.add(recept);
+                receptListView.getItems().add(nev);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -64,9 +63,92 @@ public class ReceptController {
         String mennyiseg = mennyisegField.getText();
 
         if (!alapanyagNev.isEmpty() && !mennyiseg.isEmpty()) {
-            Alapanyag alapanyag = new Alapanyag(alapanyagNev, mennyiseg);
-            // Hozzáadjuk az alapanyagot az utolsó recepthez
-            receptLista.get(receptLista.size() - 1).getAlapanyagok().add(alapanyag);
+            try {
+                String kivalasztottReceptNev = receptListView.getSelectionModel().getSelectedItem();
+                if (kivalasztottReceptNev != null) {
+                    for (Recept recept : receptLista) {
+                        if (recept.getNev().equals(kivalasztottReceptNev)) {
+                            Alapanyag ujAlapanyag = new Alapanyag(alapanyagNev, mennyiseg);
+                            recept.getAlapanyagok().add(ujAlapanyag);
+
+                            receptDAO.addAlapanyag(recept, ujAlapanyag);
+
+                            alapanyagNevField.clear();
+                            mennyisegField.clear();
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Sikeres hozzáadás");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Az alapanyag sikeresen hozzáadva a recepthez!");
+                            alert.showAndWait();
+
+                            break;
+                        }
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Nincs kijelölt recept");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Kérlek, válassz ki egy receptet a listából!");
+                    alert.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText(null);
+                alert.setContentText("Hiba történt az alapanyag hozzáadása során.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Hiányzó adatok");
+            alert.setHeaderText(null);
+            alert.setContentText("Kérlek, töltsd ki az alapanyag nevét és mennyiségét!");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void torolReceptet(ActionEvent event) {
+        String kivalasztottReceptNev = receptListView.getSelectionModel().getSelectedItem();
+        if (kivalasztottReceptNev != null) {
+            try {
+                // Megkeressük a kijelölt receptet a listában
+                Recept torlendoRecept = null;
+                for (Recept recept : receptLista) {
+                    if (recept.getNev().equals(kivalasztottReceptNev)) {
+                        torlendoRecept = recept;
+                        break;
+                    }
+                }
+
+                if (torlendoRecept != null) {
+                    receptDAO.deleteRecept(torlendoRecept);
+
+                    receptLista.remove(torlendoRecept);
+                    receptListView.getItems().remove(kivalasztottReceptNev);
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sikeres törlés");
+                    alert.setHeaderText(null);
+                    alert.setContentText("A recept sikeresen törölve lett!");
+                    alert.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText(null);
+                alert.setContentText("Hiba történt a recept törlése során.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nincs kijelölt recept");
+            alert.setHeaderText(null);
+            alert.setContentText("Kérlek, válassz ki egy receptet a listából!");
+            alert.showAndWait();
         }
     }
 
@@ -74,38 +156,42 @@ public class ReceptController {
     private void kereses() {
         String keresettNev = keresesField.getText().toLowerCase();
         ObservableList<String> szuresLista = FXCollections.observableArrayList();
-        for (Recept recept : receptLista) {
-            if (recept.getNev().toLowerCase().contains(keresettNev)) {
-                szuresLista.add(recept.getNev());
+        try {
+            receptLista = receptDAO.getAllReceptek();
+            for (Recept recept : receptLista) {
+                if (recept.getNev().toLowerCase().contains(keresettNev)) {
+                    szuresLista.add(recept.getNev());
+                }
             }
+            receptListView.setItems(szuresLista);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        receptListView.setItems(szuresLista);
     }
 
     @FXML
     private void receptKivalasztas() {
         String kivalasztottRecept = receptListView.getSelectionModel().getSelectedItem();
-        for (Recept recept : receptLista) {
-            if (recept.getNev().equals(kivalasztottRecept)) {
-                showReceptDetails(recept);
-                break;
+        if (kivalasztottRecept != null) {
+            for (Recept recept : receptLista) {
+                if (recept.getNev().equals(kivalasztottRecept)) {
+                    showReceptDetails(recept);
+                    break;
+                }
             }
         }
     }
 
     private void showReceptDetails(Recept recept) {
-        // Alert ablakot hozunk létre
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Recept Részletei");
         alert.setHeaderText("Recept: " + recept.getNev());
 
-        // Alapanyagok táblázat
         StringBuilder alapanyagokText = new StringBuilder("Alapanyagok:\n");
         for (Alapanyag alapanyag : recept.getAlapanyagok()) {
             alapanyagokText.append(alapanyag.getNev()).append(" - ").append(alapanyag.getMennyiseg()).append("\n");
         }
         alert.setContentText(alapanyagokText.toString());
-
         alert.showAndWait();
     }
 
@@ -129,24 +215,25 @@ public class ReceptController {
 
     @FXML
     private void rendez(ActionEvent event) {
-        // A combo box alapján rendezzük a listát
         String kivantRend = rendezesCombo.getSelectionModel().getSelectedItem();
-
-        if ("Név szerint növekvő".equals(kivantRend)) {
-            receptLista.sort((r1, r2) -> r1.getNev().compareTo(r2.getNev()));
-        } else if ("Név szerint csökkenő".equals(kivantRend)) {
-            receptLista.sort((r1, r2) -> r2.getNev().compareTo(r1.getNev()));
+        try {
+            receptLista = receptDAO.getAllReceptek();
+            if ("Név szerint növekvő".equals(kivantRend)) {
+                receptLista.sort((r1, r2) -> r1.getNev().compareTo(r2.getNev()));
+            } else if ("Név szerint csökkenő".equals(kivantRend)) {
+                receptLista.sort((r1, r2) -> r2.getNev().compareTo(r1.getNev()));
+            }
+            ObservableList<String> frissLista = FXCollections.observableArrayList();
+            for (Recept recept : receptLista) {
+                frissLista.add(recept.getNev());
+            }
+            receptListView.setItems(frissLista);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        // Frissítjük a ListView-t
-        ObservableList<String> frissLista = FXCollections.observableArrayList();
-        for (Recept recept : receptLista) {
-            frissLista.add(recept.getNev());
-        }
-        receptListView.setItems(frissLista);
     }
 
-    public class Recept {
+    public static class Recept {
         private String nev;
         private String leiras;
         private List<Alapanyag> alapanyagok;
@@ -162,7 +249,7 @@ public class ReceptController {
         public List<Alapanyag> getAlapanyagok() { return alapanyagok; }
     }
 
-    public class Alapanyag {
+    public static class Alapanyag {
         private String nev;
         private String mennyiseg;
 
