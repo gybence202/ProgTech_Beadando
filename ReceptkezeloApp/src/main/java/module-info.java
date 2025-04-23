@@ -6,6 +6,7 @@ module micsurin.receptkonyv.receptkezeloapp {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens micsurin.receptkonyv.receptkezeloapp to javafx.fxml;
     opens micsurin.receptkonyv.receptkezeloapp.model to javafx.base;

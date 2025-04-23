@@ -8,7 +8,9 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import micsurin.receptkonyv.receptkezeloapp.service.ReceptDAO;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,26 +28,17 @@ public class ReceptController {
 
     @FXML
     private void initialize() {
-        // Alapanyagok és receptek listájának inicializálása
-        receptLista.add(new Recept("Pörkölt", "Finom magyar étel", new ArrayList<>()));
-        receptLista.get(0).getAlapanyagok().add(new Alapanyag("Hús", "1 kg"));
-        receptLista.get(0).getAlapanyagok().add(new Alapanyag("Hagyma", "3 db"));
-
-        receptLista.add(new Recept("Lecsó", "Finom magyar étel", new ArrayList<>()));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Mangalica zsír", "50 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Mangalica szalonna", "200 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Vöröshagyma", "2 fej"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Tv-paprika", "800 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Paradicsom", "600 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Füstölt pirospaprika", "4 ek"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Paradicsom", "600 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Só", "ízlés szerint"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Sűrített paradicsom", "50 g"));
-        receptLista.get(1).getAlapanyagok().add(new Alapanyag("Parasztkolbász", "200 g"));
-
-        receptListView.setItems(FXCollections.observableArrayList(
-                "Pörkölt", "Lecsó", "Túró Rudi"
-        ));
+        ReceptDAO receptDAO = new ReceptDAO();
+        try {
+            List<Recept> receptek = receptDAO.getAllReceptek();
+            ObservableList<String> receptNevek = FXCollections.observableArrayList();
+            for (Recept recept : receptek) {
+                receptNevek.add(recept.getNev());
+            }
+            receptListView.setItems(receptNevek);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -53,8 +46,13 @@ public class ReceptController {
         String nev = nevField.getText();
         String leiras = leirasArea.getText();
         if (!nev.isEmpty() && !leiras.isEmpty()) {
-            receptLista.add(new Recept(nev, leiras, new ArrayList<>()));
-            receptListView.getItems().add(nev);
+            Recept recept = new Recept(nev, leiras, new ArrayList<>());
+            try {
+                new ReceptDAO().addRecept(recept);
+                receptListView.getItems().add(nev);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -146,7 +144,7 @@ public class ReceptController {
         receptListView.setItems(frissLista);
     }
 
-    public class Recept {
+    public static class Recept {
         private String nev;
         private String leiras;
         private List<Alapanyag> alapanyagok;
@@ -162,7 +160,7 @@ public class ReceptController {
         public List<Alapanyag> getAlapanyagok() { return alapanyagok; }
     }
 
-    public class Alapanyag {
+    public static class Alapanyag {
         private String nev;
         private String mennyiseg;
 
