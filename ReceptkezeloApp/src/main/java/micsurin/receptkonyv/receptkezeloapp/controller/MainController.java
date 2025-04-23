@@ -1,8 +1,10 @@
 package micsurin.receptkonyv.receptkezeloapp.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -22,10 +24,22 @@ public class MainController {
         loadView("/micsurin/receptkonyv/receptkezeloapp/hozzaadas-view.fxml");
     }
 
+    @FXML
+    private void loadMainView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/micsurin/receptkonyv/receptkezeloapp/main-view.fxml"));
+            BorderPane mainView = loader.load();
+            Node centerContent = mainView.getCenter(); // Get only the center content
+            rootPane.setCenter(centerContent); // Replace the center content
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadView(String fxmlPath) {
         try {
             Node view = FXMLLoader.load(getClass().getResource(fxmlPath));
-            rootPane.setCenter(view);
+            rootPane.setCenter(view); // Update only the center region
         } catch (IOException e) {
             e.printStackTrace();
         }
