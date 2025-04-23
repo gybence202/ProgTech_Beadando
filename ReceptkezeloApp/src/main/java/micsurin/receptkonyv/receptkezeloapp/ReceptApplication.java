@@ -15,7 +15,7 @@ public class ReceptApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+//opnjdk24
     public static void main(String[] args) {
         launch();
     }
