@@ -68,15 +68,44 @@ public class ReceptController {
                 if (kivalasztottReceptNev != null) {
                     for (Recept recept : receptLista) {
                         if (recept.getNev().equals(kivalasztottReceptNev)) {
-                            recept.getAlapanyagok().add(new Alapanyag(alapanyagNev, mennyiseg));
-                            receptDAO.addRecept(recept);
+                            Alapanyag ujAlapanyag = new Alapanyag(alapanyagNev, mennyiseg);
+                            recept.getAlapanyagok().add(ujAlapanyag);
+
+                            receptDAO.addAlapanyag(recept, ujAlapanyag);
+
+                            alapanyagNevField.clear();
+                            mennyisegField.clear();
+
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Sikeres hozzáadás");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Az alapanyag sikeresen hozzáadva a recepthez!");
+                            alert.showAndWait();
+
                             break;
                         }
                     }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Nincs kijelölt recept");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Kérlek, válassz ki egy receptet a listából!");
+                    alert.showAndWait();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText(null);
+                alert.setContentText("Hiba történt az alapanyag hozzáadása során.");
+                alert.showAndWait();
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Hiányzó adatok");
+            alert.setHeaderText(null);
+            alert.setContentText("Kérlek, töltsd ki az alapanyag nevét és mennyiségét!");
+            alert.showAndWait();
         }
     }
 

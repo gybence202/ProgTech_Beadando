@@ -76,4 +76,32 @@ public class ReceptDAO {
             }
         }
     }
+    public void addAlapanyag(Recept recept, Alapanyag alapanyag) throws SQLException {
+        String query = "INSERT INTO alapanyagok (recept_id, nev, mennyiseg) VALUES (?, ?, ?)";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, getReceptIdByName(recept.getNev())); // Megkeressük a recept ID-ját
+            pstmt.setString(2, alapanyag.getNev());
+            pstmt.setString(3, alapanyag.getMennyiseg());
+            pstmt.executeUpdate();
+        }
+    }
+
+    private int getReceptIdByName(String nev) throws SQLException {
+        String query = "SELECT id FROM receptek WHERE nev = ?";
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, nev);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id");
+                } else {
+                    throw new SQLException("Recept nem található: " + nev);
+                }
+            }
+        }
+    }
 }
