@@ -110,6 +110,49 @@ public class ReceptController {
     }
 
     @FXML
+    private void torolReceptet(ActionEvent event) {
+        String kivalasztottReceptNev = receptListView.getSelectionModel().getSelectedItem();
+        if (kivalasztottReceptNev != null) {
+            try {
+                // Megkeressük a kijelölt receptet a listában
+                Recept torlendoRecept = null;
+                for (Recept recept : receptLista) {
+                    if (recept.getNev().equals(kivalasztottReceptNev)) {
+                        torlendoRecept = recept;
+                        break;
+                    }
+                }
+
+                if (torlendoRecept != null) {
+                    receptDAO.deleteRecept(torlendoRecept);
+
+                    receptLista.remove(torlendoRecept);
+                    receptListView.getItems().remove(kivalasztottReceptNev);
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Sikeres törlés");
+                    alert.setHeaderText(null);
+                    alert.setContentText("A recept sikeresen törölve lett!");
+                    alert.showAndWait();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText(null);
+                alert.setContentText("Hiba történt a recept törlése során.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nincs kijelölt recept");
+            alert.setHeaderText(null);
+            alert.setContentText("Kérlek, válassz ki egy receptet a listából!");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
     private void kereses() {
         String keresettNev = keresesField.getText().toLowerCase();
         ObservableList<String> szuresLista = FXCollections.observableArrayList();

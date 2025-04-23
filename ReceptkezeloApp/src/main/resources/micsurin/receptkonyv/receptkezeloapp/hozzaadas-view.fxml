@@ -15,6 +15,7 @@
     <TextField fx:id="nevField" promptText="Recept neve"/>
     <TextArea fx:id="leirasArea" promptText="Recept leírása" prefRowCount="4"/>
     <Button text="Hozzáadás" onAction="#hozzaadReceptet"/>
+    <Button text="Törlés" onAction="#torolReceptet" />
 
     <HBox spacing="5">
         <TextField fx:id="alapanyagNevField" promptText="Alapanyag neve"/>

@@ -104,4 +104,21 @@ public class ReceptDAO {
             }
         }
     }
+    public void deleteRecept(Recept recept) throws SQLException {
+        String deleteAlapanyagokQuery = "DELETE FROM alapanyagok WHERE recept_id = ?";
+        String deleteReceptQuery = "DELETE FROM receptek WHERE id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement deleteAlapanyagokStmt = conn.prepareStatement(deleteAlapanyagokQuery);
+             PreparedStatement deleteReceptStmt = conn.prepareStatement(deleteReceptQuery)) {
+
+            int receptId = getReceptIdByName(recept.getNev());
+
+            deleteAlapanyagokStmt.setInt(1, receptId);
+            deleteAlapanyagokStmt.executeUpdate();
+
+            deleteReceptStmt.setInt(1, receptId);
+            deleteReceptStmt.executeUpdate();
+        }
+    }
 }
