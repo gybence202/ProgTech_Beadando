@@ -1,0 +1,84 @@
+.root {
+    -fx-background-color: #d0d2c0;
+}
+
+.button {
+    -fx-background-color: #636B2F;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: #7A8438;
+    -fx-cursor: hand;
+}
+
+.menu-bar {
+    -fx-background-color: #636B2F;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border:0;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+.menu-bar .menu {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #636B2F;
+}
+
+.menu-bar .menu .label {
+    -fx-text-fill: #FFFFFF;
+}
+
+.context-menu {
+    -fx-background-color: #636B2F;
+}
+
+.context-menu .menu-item {
+    -fx-background-color: #636B2F;
+    -fx-text-fill: #FFFFFF;
+    -fx-cursor: hand;
+}
+
+.context-menu .menu-item:hover {
+    -fx-background-color: #7A8438;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-text-fill: #000000;
+    -fx-border-color: #636B2F;
+}
+
+.text-field, .text-area {
+    -fx-text-fill: #000000;
+    -fx-background-color: white;
+    -fx-border-color: #636B2F;
+    -fx-border-width: 1px;
+    -fx-prompt-text-fill: #5c5c5c;
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #636B2F;
+    -fx-text-fill: #000000;
+}
+
+.button:hover{
+    -fx-background-color: #636B2F;
+    -fx-cursor: hand;
+}
+
+.menu-bar-button {
+    -fx-background-color: #636B2F;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border-color: transparent;
+    -fx-border: 0;
+    -fx-background-radius: 0;
+}

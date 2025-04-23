@@ -2,17 +2,30 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<BorderPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml" fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.MainController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import com.sun.javafx.scene.control.ContextMenuContent.MenuBox?>
+<BorderPane fx:id="rootPane" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.MainController">
     <top>
-        <MenuBar>
-            <Menu text="Menü">
-                <MenuItem text="Keresés" onAction="#nyitKeresesPanel"/>
-                <MenuItem text="Hozzáadás" onAction="#loadHozzaadasView"/>
-            </Menu>
-        </MenuBar>
+        <VBox>
+            <HBox>
+                <Button text="Kezdőlap" onAction="#loadMainView" styleClass="menu-bar-button" />
+                <MenuBar>
+                    <Menu text="Menü">
+                        <MenuItem onAction="#nyitKeresesPanel" text="Keresés" />
+                        <MenuItem onAction="#loadHozzaadasView" text="Hozzáadás" />
+                    </Menu>
+                </MenuBar>
+            </HBox>
+        </VBox>
     </top>
+    <center>
+        <StackPane>
+            <ImageView fitWidth="400" fitHeight="300" preserveRatio="true">
+                <image>
+                    <Image url="@logo.png" />
+                </image>
+            </ImageView>
+        </StackPane>
+    </center>
 </BorderPane>

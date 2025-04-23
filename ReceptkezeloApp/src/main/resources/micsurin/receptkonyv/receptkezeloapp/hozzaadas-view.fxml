@@ -7,7 +7,7 @@
 <?import java.lang.String?>
 
 <?import javafx.collections.FXCollections?>
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.ReceptController" spacing="10">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.ReceptController" spacing="10" stylesheets="@style.css">
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
