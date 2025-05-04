@@ -23,7 +23,7 @@ public class DatabaseConnection {
              Statement stmt = conn.createStatement()) {
 
             int result = stmt.executeUpdate("CREATE DATABASE IF NOT EXISTS " + DATABASE_NAME);
-            isDatabaseCreated = (result > 0); // Ha az adatbázis most jött létre, a result > 0
+            isDatabaseCreated = (result > 0);
 
             try (Connection dbConn = DriverManager.getConnection(URL + DATABASE_NAME, USER, PASSWORD);
                  Statement dbStmt = dbConn.createStatement()) {
