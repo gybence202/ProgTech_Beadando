@@ -154,13 +154,20 @@ public class ReceptController {
 
     @FXML
     private void kereses() {
-        String keresettNev = keresesField.getText().toLowerCase();
+        String keresettSzoveg = keresesField.getText().toLowerCase();
         ObservableList<String> szuresLista = FXCollections.observableArrayList();
         try {
             receptLista = receptDAO.getAllReceptek();
             for (Recept recept : receptLista) {
-                if (recept.getNev().toLowerCase().contains(keresettNev)) {
+                if (recept.getNev().toLowerCase().contains(keresettSzoveg)) {
                     szuresLista.add(recept.getNev());
+                } else {
+                    for (Alapanyag alapanyag : recept.getAlapanyagok()) {
+                        if (alapanyag.getNev().toLowerCase().contains(keresettSzoveg)) {
+                            szuresLista.add(recept.getNev());
+                            break;
+                        }
+                    }
                 }
             }
             receptListView.setItems(szuresLista);

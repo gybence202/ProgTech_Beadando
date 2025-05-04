@@ -10,7 +10,7 @@
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
-    <TextField fx:id="keresesField" promptText="Keresés név alapján" onKeyReleased="#kereses"/>
+    <TextField fx:id="keresesField" promptText="Keresés recept vagy alapanyag alapján" onKeyReleased="#kereses"/>
     <ComboBox fx:id="rendezesCombo" onAction="#rendez">
         <items>
             <FXCollections fx:factory="observableArrayList">
