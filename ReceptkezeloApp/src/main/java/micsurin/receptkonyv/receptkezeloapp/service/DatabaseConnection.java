@@ -32,7 +32,8 @@ public class DatabaseConnection {
                     CREATE TABLE IF NOT EXISTS receptek (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         nev VARCHAR(255) NOT NULL,
-                        leiras TEXT NOT NULL
+                        leiras TEXT NOT NULL,
+                        kedvencek TINYINT(1) DEFAULT 0
                     )
                 """);
 
@@ -42,6 +43,13 @@ public class DatabaseConnection {
                         recept_id INT NOT NULL,
                         nev VARCHAR(255) NOT NULL,
                         mennyiseg VARCHAR(255) NOT NULL,
+                        FOREIGN KEY (recept_id) REFERENCES receptek(id) ON DELETE CASCADE
+                    )
+                """);
+                dbStmt.executeUpdate("""
+                    CREATE TABLE IF NOT EXISTS kedvencek (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        recept_id INT NOT NULL,
                         FOREIGN KEY (recept_id) REFERENCES receptek(id) ON DELETE CASCADE
                     )
                 """);

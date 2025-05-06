@@ -14,6 +14,7 @@
                     <Menu text="Menü">
                         <MenuItem onAction="#nyitKeresesPanel" text="Keresés" />
                         <MenuItem onAction="#loadHozzaadasView" text="Hozzáadás" />
+                        <MenuItem onAction="#loadKedvencekView" text="Kedvencek" />
                     </Menu>
                 </MenuBar>
             </HBox>

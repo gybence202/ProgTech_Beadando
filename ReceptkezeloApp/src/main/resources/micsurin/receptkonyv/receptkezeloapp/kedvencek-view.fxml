@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.KedvencekController" spacing="10">
+    <ListView fx:id="kedvencekListView" onMouseClicked="#showReceptDetails" />
+    <Button text="Kivétel a kedvencek közül" onAction="#removeFromFavorites" />
+</VBox>

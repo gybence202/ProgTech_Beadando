@@ -1,10 +1,8 @@
 package micsurin.receptkonyv.receptkezeloapp.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -43,5 +41,10 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void loadKedvencekView() {
+        loadView("/micsurin/receptkonyv/receptkezeloapp/kedvencek-view.fxml");
     }
 }
