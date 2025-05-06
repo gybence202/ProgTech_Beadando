@@ -82,3 +82,8 @@
     -fx-border: 0;
     -fx-background-radius: 0;
 }
+
+#bevasarlolista{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}

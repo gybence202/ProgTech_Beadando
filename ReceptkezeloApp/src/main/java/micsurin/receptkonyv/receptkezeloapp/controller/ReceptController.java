@@ -240,6 +240,45 @@ public class ReceptController {
         }
     }
 
+
+    @FXML
+    private void addToFavorites() {
+        String kivalasztottReceptNev = receptListView.getSelectionModel().getSelectedItem();
+        if (kivalasztottReceptNev != null) {
+            try {
+                for (Recept recept : receptLista) {
+                    if (recept.getNev().equals(kivalasztottReceptNev)) {
+                        receptDAO.addKedvenc(recept);
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Sikeres hozzáadás");
+                        alert.setHeaderText(null);
+                        alert.setContentText("A recept sikeresen hozzáadva a kedvencekhez!");
+                        alert.showAndWait();
+                        break;
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText(null);
+                alert.setContentText("Hiba történt a kedvencekhez adás során.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nincs kijelölt recept");
+            alert.setHeaderText(null);
+            alert.setContentText("Kérlek, válassz ki egy receptet a listából!");
+            alert.showAndWait();
+        }
+    }
+
+
+
+
+
     public static class Recept {
         private String nev;
         private String leiras;

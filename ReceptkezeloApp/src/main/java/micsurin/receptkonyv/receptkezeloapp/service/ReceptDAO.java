@@ -121,4 +121,62 @@ public class ReceptDAO {
             deleteReceptStmt.executeUpdate();
         }
     }
+
+
+
+
+
+
+
+
+
+    public void addKedvenc(Recept recept) throws SQLException {
+        String query = "INSERT INTO kedvencek (recept_id) VALUES (?)";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, getReceptIdByName(recept.getNev()));
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void deleteKedvenc(Recept recept) throws SQLException {
+        String query = "DELETE FROM kedvencek WHERE recept_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, getReceptIdByName(recept.getNev()));
+            pstmt.executeUpdate();
+        }
+    }
+
+    public List<Recept> getKedvencek() throws SQLException {
+        List<Recept> kedvencek = new ArrayList<>();
+        String query = """
+        SELECT r.id, r.nev, r.leiras
+        FROM kedvencek k
+        JOIN receptek r ON k.recept_id = r.id
+    """;
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String nev = rs.getString("nev");
+                String leiras = rs.getString("leiras");
+                List<Alapanyag> alapanyagok = getAlapanyagokByReceptId(id);
+                kedvencek.add(new Recept(nev, leiras, alapanyagok));
+            }
+        }
+        return kedvencek;
+    }
+
+
+
+
+
 }

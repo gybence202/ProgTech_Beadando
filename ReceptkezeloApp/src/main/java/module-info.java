@@ -7,6 +7,9 @@ module micsurin.receptkonyv.receptkezeloapp {
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
+    requires org.junit.jupiter.api;
+    requires org.testng;
+    requires junit;
 
     opens micsurin.receptkonyv.receptkezeloapp to javafx.fxml;
     opens micsurin.receptkonyv.receptkezeloapp.model to javafx.base;
