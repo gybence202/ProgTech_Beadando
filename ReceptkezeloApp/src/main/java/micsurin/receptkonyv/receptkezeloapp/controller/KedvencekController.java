@@ -79,7 +79,7 @@ public class KedvencekController {
                     alert.setTitle("Recept Részletei");
                     alert.setHeaderText("Recept: " + recept.getNev());
 
-                    StringBuilder details = new StringBuilder("Leírás: " + recept.getLeiras() + "\nAlapanyagok:\n");
+                    StringBuilder details = new StringBuilder("Alapanyagok:\n");
                     for (ReceptController.Alapanyag alapanyag : recept.getAlapanyagok()) {
                         details.append(alapanyag.getNev()).append(" - ").append(alapanyag.getMennyiseg()).append("\n");
                     }

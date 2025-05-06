@@ -3,6 +3,7 @@ package micsurin.receptkonyv.receptkezeloapp.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
@@ -46,5 +47,16 @@ public class MainController {
     @FXML
     private void loadKedvencekView() {
         loadView("/micsurin/receptkonyv/receptkezeloapp/kedvencek-view.fxml");
+    }
+
+
+    @FXML
+    private void loadShoppingListView() {
+        try {
+            Parent shoppingListView = FXMLLoader.load(getClass().getResource("/micsurin/receptkonyv/receptkezeloapp/shopping-list-view.fxml"));
+            rootPane.setCenter(shoppingListView); // This works as Parent is a subclass of Node
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

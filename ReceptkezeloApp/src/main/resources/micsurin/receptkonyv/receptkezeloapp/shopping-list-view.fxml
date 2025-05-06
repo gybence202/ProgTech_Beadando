@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" stylesheets="@style.css" fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.ShoppingListController" spacing="10" alignment="CENTER">
+    <Label text="Bevásárlólista" styleClass="header-label" fx:id="bevasarlolista" />
+    <ListView fx:id="shoppingListView" />
+    <HBox spacing="10">
+        <TextField fx:id="newItemField" promptText="Új tétel hozzáadása" />
+        <Button text="Hozzáadás" onAction="#addItem" />
+    </HBox>
+</VBox>
