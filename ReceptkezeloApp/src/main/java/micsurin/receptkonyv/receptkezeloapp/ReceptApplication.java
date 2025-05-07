@@ -10,7 +10,7 @@ public class ReceptApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/micsurin/receptkonyv/receptkezeloapp/main-view.fxml"));
-        Scene scene = new Scene(root, 400, 450);
+        Scene scene = new Scene(root, 445, 450);
         stage.setTitle("Receptkezelő");
         stage.setScene(scene);
         stage.show();

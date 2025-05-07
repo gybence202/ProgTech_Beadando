@@ -1,7 +1,6 @@
 .root {
     -fx-background-color: #d0d2c0;
 }
-
 .button {
     -fx-background-color: #636B2F;
     -fx-text-fill: #FFFFFF;
@@ -12,7 +11,6 @@
 }
 
 .button:hover {
-    -fx-background-color: #7A8438;
     -fx-cursor: hand;
 }
 
@@ -33,6 +31,16 @@
 .menu-bar .menu .label {
     -fx-text-fill: #FFFFFF;
 }
+
+.menu-bar-button:focused {
+    -fx-background-color: #4F5725;
+    -fx-text-fill: #FFFFFF;
+}
+.menu-bar-button:focused:hover {
+    -fx-background-color: #4F5725;
+    -fx-text-fill: #FFFFFF;
+}
+
 
 .context-menu {
     -fx-background-color: #636B2F;
