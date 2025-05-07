@@ -9,5 +9,6 @@
     <HBox spacing="10">
         <TextField fx:id="newItemField" promptText="Új tétel hozzáadása" />
         <Button text="Hozzáadás" onAction="#addItem" />
+        <Button text="Törlés" onAction="#removeItem" />
     </HBox>
 </VBox>

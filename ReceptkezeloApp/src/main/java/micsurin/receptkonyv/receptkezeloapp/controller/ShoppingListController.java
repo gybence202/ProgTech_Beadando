@@ -32,4 +32,12 @@ public class ShoppingListController {
             newItemField.clear();
         }
     }
+
+    @FXML
+    private void removeItem() {
+        CheckBox selectedItem = shoppingListView.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            shoppingList.remove(selectedItem);
+        }
+    }
 }
