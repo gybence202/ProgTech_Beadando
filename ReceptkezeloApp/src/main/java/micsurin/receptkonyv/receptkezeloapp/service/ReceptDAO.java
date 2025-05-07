@@ -23,7 +23,7 @@ public class ReceptDAO {
                 String leiras = rs.getString("leiras");
 
                 List<Alapanyag> alapanyagok = getAlapanyagokByReceptId(id);
-                receptek.add(new Recept(nev, leiras, alapanyagok));
+                receptek.add(new Recept(id,nev, leiras, alapanyagok));
             }
         }
         return receptek;
@@ -169,7 +169,7 @@ public class ReceptDAO {
                 String nev = rs.getString("nev");
                 String leiras = rs.getString("leiras");
                 List<Alapanyag> alapanyagok = getAlapanyagokByReceptId(id);
-                kedvencek.add(new Recept(nev, leiras, alapanyagok));
+                kedvencek.add(new Recept(id, nev, leiras, alapanyagok));
             }
         }
         return kedvencek;

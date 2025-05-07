@@ -43,10 +43,11 @@ public class ReceptController {
 
     @FXML
     private void hozzaadReceptet(ActionEvent event) {
+        int id = receptLista.size() + 1;
         String nev = nevField.getText();
         String leiras = leirasArea.getText();
         if (!nev.isEmpty() && !leiras.isEmpty()) {
-            Recept recept = new Recept(nev, leiras, new ArrayList<>());
+            Recept recept = new Recept(id,nev, leiras, new ArrayList<>());
             try {
                 receptDAO.addRecept(recept);
                 receptLista.add(recept);
@@ -229,6 +230,10 @@ public class ReceptController {
                 receptLista.sort((r1, r2) -> r1.getNev().compareTo(r2.getNev()));
             } else if ("Név szerint csökkenő".equals(kivantRend)) {
                 receptLista.sort((r1, r2) -> r2.getNev().compareTo(r1.getNev()));
+            } else if ("Hozzáadás szerint növekvő".equals(kivantRend)) {
+                receptLista.sort((r1, r2) -> Integer.compare(r1.getId(), r2.getId()));
+            } else if ("Hozzáadás szerint csökkenő".equals(kivantRend)) {
+                receptLista.sort((r1, r2) -> Integer.compare(r2.getId(), r1.getId()));
             }
             ObservableList<String> frissLista = FXCollections.observableArrayList();
             for (Recept recept : receptLista) {
@@ -280,19 +285,23 @@ public class ReceptController {
 
 
     public static class Recept {
+        private int id;
         private String nev;
         private String leiras;
         private List<Alapanyag> alapanyagok;
 
-        public Recept(String nev, String leiras, List<Alapanyag> alapanyagok) {
+        public Recept(int id,String nev, String leiras, List<Alapanyag> alapanyagok) {
+            this.id = id;
             this.nev = nev;
             this.leiras = leiras;
             this.alapanyagok = alapanyagok;
         }
 
+        public  int getId() { return id; }
         public String getNev() { return nev; }
         public String getLeiras() { return leiras; }
         public List<Alapanyag> getAlapanyagok() { return alapanyagok; }
+
     }
 
     public static class Alapanyag {

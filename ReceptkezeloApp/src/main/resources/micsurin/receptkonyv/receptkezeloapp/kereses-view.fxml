@@ -16,6 +16,8 @@
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="Név szerint növekvő"/>
                 <String fx:value="Név szerint csökkenő"/>
+                <String fx:value="Hozzáadás szerint növekvő"/>
+                <String fx:value="Hozzáadás szerint csökkenő"/>
             </FXCollections>
         </items>
     </ComboBox>
