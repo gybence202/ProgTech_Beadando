@@ -10,14 +10,10 @@
         <VBox>
             <HBox>
                 <Button text="Kezdőlap" onAction="#loadMainView" styleClass="menu-bar-button" />
-                <MenuBar>
-                    <Menu text="Menü">
-                        <MenuItem onAction="#nyitKeresesPanel" text="Keresés" />
-                        <MenuItem onAction="#loadHozzaadasView" text="Hozzáadás" />
-                        <MenuItem onAction="#loadKedvencekView" text="Kedvencek" />
-                        <MenuItem onAction="#loadShoppingListView" text="Bevásárlólista" />
-                    </Menu>
-                </MenuBar>
+                <Button styleClass="menu-bar-button" onAction="#nyitKeresesPanel" text="Keresés" />
+                <Button styleClass="menu-bar-button" onAction="#loadHozzaadasView" text="Hozzáadás" />
+                <Button styleClass="menu-bar-button" onAction="#loadKedvencekView" text="Kedvencek" />
+                <Button styleClass="menu-bar-button" onAction="#loadShoppingListView" text="Bevásárlólista" />
             </HBox>
         </VBox>
     </top>
