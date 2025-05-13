@@ -85,6 +85,8 @@ class ReceptTest {
         assertEquals("Teszt Alapanyag", retrievedRecept.getAlapanyagok().get(0).getNev());
     }
 
+    //Dani Teszt
+
     @Test
     void testSearchReceptByName() throws SQLException {
         Recept recept = new Recept(1, "Keresett Recept", "Ez egy keresett recept.", List.of());
@@ -103,4 +105,21 @@ class ReceptTest {
         assertTrue(receptek.stream().anyMatch(r -> r.getAlapanyagok().stream().anyMatch(a -> a.getNev().contains("Keresett"))));
     }
 
+    @Test
+    void testReceptekRendezeseNevSzerint() throws SQLException {
+        Recept receptA = new Recept(1, "Húseves", "", List.of());
+        Recept receptB = new Recept(2, "Rántotthús", "", List.of());
+        Recept receptC = new Recept(3, "Pogácsa", "", List.of());
+
+        receptDAO.addRecept(receptB);
+        receptDAO.addRecept(receptC);
+        receptDAO.addRecept(receptA);
+
+        List<Recept> receptek = receptDAO.getAllReceptek();
+        receptek.sort((r1, r2) -> r1.getNev().compareTo(r2.getNev()));
+
+        assertEquals("Húsleves", receptek.get(0).getNev());
+        assertEquals("Pogácsa", receptek.get(1).getNev());
+        assertEquals("Rántotthús", receptek.get(2).getNev());
+    }
 }
