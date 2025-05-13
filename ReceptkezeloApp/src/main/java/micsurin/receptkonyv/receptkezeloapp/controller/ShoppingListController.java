@@ -30,8 +30,8 @@ public class ShoppingListController {
     private void addItem() {
         String newItem = newItemField.getText().trim();
         String quantity = quantityField != null ? quantityField.getText().trim() : "";
-        if (!newItem.isEmpty() && !quantity.isEmpty()) {
-            CheckBox checkBox = new CheckBox(newItem + " - " + quantity);
+        if (!newItem.isEmpty()) {
+            CheckBox checkBox = new CheckBox(newItem + "    " + quantity);
             shoppingList.add(checkBox);
             newItemField.clear();
             quantityField.clear();
