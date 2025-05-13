@@ -15,25 +15,21 @@ public class ReceptService {
         this.logger = logger;
     }
 
-    // Recept hozzáadása
     public void hozzaad(Recept recept) {
         receptek.add(recept);
         logger.log("Recept hozzáadva: " + recept.getNev());
     }
 
-    // Receptek lekérése
     public List<Recept> getReceptek() {
         return receptek;
     }
 
-    // Keresés név alapján
     public List<Recept> keresReceptet(String szuro) {
         return receptek.stream()
                 .filter(r -> r.getNev().toLowerCase().contains(szuro.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
-    // Receptek rendezése név szerint
     public void rendezesNév(String irany) {
         if ("csökkenő".equals(irany)) {
             receptek.sort((r1, r2) -> r2.getNev().compareTo(r1.getNev()));
