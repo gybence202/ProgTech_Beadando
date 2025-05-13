@@ -293,13 +293,12 @@ public class ReceptController {
                 Parent root = loader.load();
                 micsurin.receptkonyv.receptkezeloapp.controller.NaptarView naptarController = loader.getController();
 
+                naptarController.setReceptNev(kivalasztottReceptNev);
+
                 Stage stage = new Stage();
                 stage.setTitle("Naptár");
                 stage.setScene(new Scene(root));
                 stage.show();
-
-                // Hozzáadás az aktuális naphoz (vagy módosítsd, hogy a felhasználó választhasson)
-                naptarController.addReceptToDate(java.time.LocalDate.now(), kivalasztottReceptNev);
 
             } catch (Exception e) {
                 e.printStackTrace();

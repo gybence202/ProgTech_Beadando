@@ -14,8 +14,12 @@ public class NaptarView {
     private DatePicker datePicker;
     @FXML
     private ListView<String> receptListView;
+    @FXML
+    private Button hozzaadButton;
 
-    private Map<LocalDate, ObservableList<String>> naptarReceptek = new HashMap<>();
+    // Statikus adattag, hogy minden példány ugyanazt lássa
+    private static Map<LocalDate, ObservableList<String>> naptarReceptek = new HashMap<>();
+    private String receptNev;
 
     @FXML
     public void initialize() {
@@ -24,10 +28,18 @@ public class NaptarView {
         updateReceptList(datePicker.getValue());
     }
 
-    public void addReceptToDate(LocalDate date, String receptNev) {
-        naptarReceptek.putIfAbsent(date, FXCollections.observableArrayList());
-        naptarReceptek.get(date).add(receptNev);
-        if (date.equals(datePicker.getValue())) {
+    public void setReceptNev(String nev) {
+        this.receptNev = nev;
+    }
+
+    @FXML
+    private void hozzaadReceptet() {
+        LocalDate date = datePicker.getValue();
+        if (receptNev != null && date != null) {
+            naptarReceptek.putIfAbsent(date, FXCollections.observableArrayList());
+            if (!naptarReceptek.get(date).contains(receptNev)) {
+                naptarReceptek.get(date).add(receptNev);
+            }
             updateReceptList(date);
         }
     }

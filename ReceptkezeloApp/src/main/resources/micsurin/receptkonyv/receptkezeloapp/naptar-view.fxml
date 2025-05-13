@@ -9,9 +9,10 @@
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="micsurin.receptkonyv.receptkezeloapp.controller.NaptarView"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="340" prefWidth="600.0">
     <children>
         <DatePicker fx:id="datePicker" layoutX="20" layoutY="20" />
-        <ListView fx:id="receptListView" layoutX="20" layoutY="60" prefWidth="560" prefHeight="320"/>
+        <Button fx:id="hozzaadButton" text="Hozzáadás" layoutX="220" layoutY="20" onAction="#hozzaadReceptet"/>
+        <ListView fx:id="receptListView" layoutX="20" layoutY="60" prefWidth="300" prefHeight="320" />
     </children>
 </AnchorPane>
