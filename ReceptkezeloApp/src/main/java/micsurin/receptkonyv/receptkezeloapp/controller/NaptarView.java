@@ -17,7 +17,6 @@ public class NaptarView {
     @FXML
     private Button hozzaadButton;
 
-    // Statikus adattag, hogy minden példány ugyanazt lássa
     private static Map<LocalDate, ObservableList<String>> naptarReceptek = new HashMap<>();
     private String receptNev;
 

@@ -9,7 +9,6 @@ public class Recept {
     private List<String> alapanyagok;  // Lista az alapanyagoknak
     private List<String> mennyisegek;  // Lista az alapanyagok mennyiségeinek
 
-    // Konstruktor
     public Recept(String nev, String leiras, List<String> alapanyagok, List<String> mennyisegek) {
         this.nev = nev;
         this.leiras = leiras;
@@ -17,7 +16,6 @@ public class Recept {
         this.mennyisegek = mennyisegek;
     }
 
-    // Getterek és setterek
     public String getNev() {
         return nev;
     }
@@ -50,7 +48,6 @@ public class Recept {
         this.mennyisegek = mennyisegek;
     }
 
-    // Függvények a kereséshez és rendezéshez
     public boolean keres(String keresett) {
         return nev.toLowerCase().contains(keresett.toLowerCase()) ||
                 leiras.toLowerCase().contains(keresett.toLowerCase());
@@ -61,7 +58,6 @@ public class Recept {
         this.mennyisegek.add(mennyiseg);
     }
 
-    // String-ként visszaadja a recept információit
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Név: ").append(nev).append("\n");

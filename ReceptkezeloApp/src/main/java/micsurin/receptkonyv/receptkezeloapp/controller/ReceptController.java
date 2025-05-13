@@ -119,7 +119,6 @@ public class ReceptController {
         String kivalasztottReceptNev = receptListView.getSelectionModel().getSelectedItem();
         if (kivalasztottReceptNev != null) {
             try {
-                // Megkeressük a kijelölt receptet a listában
                 Recept torlendoRecept = null;
                 for (Recept recept : receptLista) {
                     if (recept.getNev().equals(kivalasztottReceptNev)) {

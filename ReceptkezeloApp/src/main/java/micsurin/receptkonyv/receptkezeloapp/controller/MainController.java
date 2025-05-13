@@ -64,7 +64,7 @@ public class MainController {
     public void loadCalendarView(ActionEvent actionEvent) {
         try {
             Parent calendarView = FXMLLoader.load(getClass().getResource("/micsurin/receptkonyv/receptkezeloapp/naptar-view.fxml"));
-            rootPane.setCenter(calendarView); // This works as Parent is a subclass of Node
+            rootPane.setCenter(calendarView);
         } catch (IOException e) {
             e.printStackTrace();
         }
