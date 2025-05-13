@@ -14,6 +14,7 @@
                 <Button styleClass="menu-bar-button" onAction="#loadHozzaadasView" text="Hozzáadás" />
                 <Button styleClass="menu-bar-button" onAction="#loadKedvencekView" text="Kedvencek" />
                 <Button styleClass="menu-bar-button" onAction="#loadShoppingListView" text="Bevásárlólista" />
+                <Button styleClass="menu-bar-button" onAction="#loadCalendarView" text="Naptár" />
             </HBox>
         </VBox>
     </top>
