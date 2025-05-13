@@ -15,6 +15,9 @@ public class ShoppingListController {
     @FXML
     private TextField newItemField;
 
+    @FXML
+    private TextField quantityField;
+
     private ObservableList<CheckBox> shoppingList;
 
     @FXML
@@ -26,10 +29,12 @@ public class ShoppingListController {
     @FXML
     private void addItem() {
         String newItem = newItemField.getText().trim();
-        if (!newItem.isEmpty()) {
-            CheckBox checkBox = new CheckBox(newItem);
+        String quantity = quantityField != null ? quantityField.getText().trim() : "";
+        if (!newItem.isEmpty() && !quantity.isEmpty()) {
+            CheckBox checkBox = new CheckBox(newItem + " - " + quantity);
             shoppingList.add(checkBox);
             newItemField.clear();
+            quantityField.clear();
         }
     }
 
