@@ -10,6 +10,10 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import micsurin.receptkonyv.receptkezeloapp.service.ReceptDAO;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -280,7 +284,38 @@ public class ReceptController {
         }
     }
 
+    @FXML
+    private void addToCalendar() {
+        String kivalasztottReceptNev = receptListView.getSelectionModel().getSelectedItem();
+        if (kivalasztottReceptNev != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/micsurin/receptkonyv/receptkezeloapp/naptar-view.fxml"));
+                Parent root = loader.load();
+                micsurin.receptkonyv.receptkezeloapp.controller.NaptarView naptarController = loader.getController();
 
+                naptarController.setReceptNev(kivalasztottReceptNev);
+
+                Stage stage = new Stage();
+                stage.setTitle("Naptár");
+                stage.setScene(new Scene(root));
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Hiba");
+                alert.setHeaderText(null);
+                alert.setContentText("Hiba történt a naptárhoz adás során.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nincs kijelölt recept");
+            alert.setHeaderText(null);
+            alert.setContentText("Kérlek, válassz ki egy receptet a listából!");
+            alert.showAndWait();
+        }
+    }
 
 
 

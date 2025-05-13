@@ -69,8 +69,6 @@ class ReceptTest {
         assertFalse(receptek.stream().anyMatch(r -> r.getNev().equals("Törlendő Recept")));
     }
 
-    //Dani Teszt
-
     @Test
     void testAddAlapanyag() throws SQLException {
         Recept recept = new Recept(1, "Alapanyag Teszt Recept", "Ez egy teszt recept.", List.of());

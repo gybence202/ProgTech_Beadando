@@ -1,5 +1,6 @@
 package micsurin.receptkonyv.receptkezeloapp.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -55,6 +56,15 @@ public class MainController {
         try {
             Parent shoppingListView = FXMLLoader.load(getClass().getResource("/micsurin/receptkonyv/receptkezeloapp/shopping-list-view.fxml"));
             rootPane.setCenter(shoppingListView); // This works as Parent is a subclass of Node
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadCalendarView(ActionEvent actionEvent) {
+        try {
+            Parent calendarView = FXMLLoader.load(getClass().getResource("/micsurin/receptkonyv/receptkezeloapp/naptar-view.fxml"));
+            rootPane.setCenter(calendarView); // This works as Parent is a subclass of Node
         } catch (IOException e) {
             e.printStackTrace();
         }

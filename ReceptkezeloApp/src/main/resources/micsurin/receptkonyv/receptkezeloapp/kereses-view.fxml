@@ -23,4 +23,5 @@
     </ComboBox>
     <ListView fx:id="receptListView" prefHeight="200" onMouseClicked="#receptKivalasztas"/>
     <Button text="Kedvencekhez adás" onAction="#addToFavorites" />
+    <Button text="Naptárhoz adás" onAction="#addToCalendar" />
 </VBox>
