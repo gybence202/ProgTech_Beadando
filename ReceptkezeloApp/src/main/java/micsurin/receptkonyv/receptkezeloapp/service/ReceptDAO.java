@@ -82,7 +82,7 @@ public class ReceptDAO {
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setInt(1, getReceptIdByName(recept.getNev())); // Megkeressük a recept ID-ját
+            pstmt.setInt(1, getReceptIdByName(recept.getNev()));
             pstmt.setString(2, alapanyag.getNev());
             pstmt.setString(3, alapanyag.getMennyiseg());
             pstmt.executeUpdate();

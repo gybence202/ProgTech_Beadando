@@ -12,8 +12,17 @@
                 <Button text="Kezdőlap" onAction="#loadMainView" styleClass="menu-bar-button" />
                 <Button styleClass="menu-bar-button" onAction="#nyitKeresesPanel" text="Keresés" />
                 <Button styleClass="menu-bar-button" onAction="#loadHozzaadasView" text="Hozzáadás" />
-                <Button styleClass="menu-bar-button" onAction="#loadKedvencekView" text="Kedvencek" />
-                <Button styleClass="menu-bar-button" onAction="#loadShoppingListView" text="Bevásárlólista" />
+                <MenuBar>
+                    <menus>
+                        <Menu text="Egyebek">
+                            <items>
+                                <MenuItem text="Kedvencek" onAction="#loadKedvencekView"/>
+                                <MenuItem text="Bevásárlólista" onAction="#loadShoppingListView"/>
+                                <MenuItem text="Naptár" onAction="#loadCalendarView"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
             </HBox>
         </VBox>
     </top>
