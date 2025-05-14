@@ -1,5 +1,3 @@
-package tests;
-
 import micsurin.receptkonyv.receptkezeloapp.service.ReceptDAO;
 import micsurin.receptkonyv.receptkezeloapp.controller.ReceptController.Recept;
 import micsurin.receptkonyv.receptkezeloapp.controller.ReceptController.Alapanyag;
@@ -11,7 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class ReceptTest {
+public class ReceptTest {
 
     private ReceptDAO receptDAO;
 
